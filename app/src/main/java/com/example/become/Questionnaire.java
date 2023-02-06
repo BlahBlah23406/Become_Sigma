@@ -3,19 +3,26 @@ package com.example.become;
 import static android.app.PendingIntent.FLAG_IMMUTABLE;
 import static android.app.PendingIntent.FLAG_MUTABLE;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
@@ -41,6 +48,15 @@ public class Questionnaire extends AppCompatActivity {
         option1 = (RadioButton) findViewById(R.id.radioButton);
         option2 = (RadioButton) findViewById(R.id.radioButton2);
         option3 = (RadioButton) findViewById(R.id.radioButton3);
+
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+//                Manifest.permission.ACCESS_NOTIFICATION_POLICY)
+//                != PackageManager.PERMISSION_GRANTED) {
+            int requestcode = 0;
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, requestcode);
+//        }
+
+
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         int currentWorkout = sh.getInt("currentWorkout", 1);
         SharedPreferences.Editor editor = sh.edit();
@@ -74,7 +90,7 @@ public class Questionnaire extends AppCompatActivity {
         calendar1.set(Calendar.MINUTE, 0);
         calendar1.set(Calendar.SECOND, 1);
 
-        manager1.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent1);
+        manager1.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), 60000, pendingIntent1);
 
         AlarmManager manager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 

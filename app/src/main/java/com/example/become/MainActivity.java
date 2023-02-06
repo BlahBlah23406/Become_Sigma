@@ -2,21 +2,33 @@ package com.example.become;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView task1; TextView task2; TextView task3; TextView task4; TextView task5; TextView task6;
+    TextView task1; TextView task2; TextView task3; TextView task4; TextView task5; TextView task6; TextView taskThatAreComplete;
     Button currentTask;
     int currentWorkout;
     int workoutPlan;
+    int weeklyWorkout;
     SharedPreferences.Editor editor;
     boolean canCompleteTask;
+    private BroadcastReceiver myReceiver;
+    SharedPreferences sh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +40,31 @@ public class MainActivity extends AppCompatActivity {
         task4 = findViewById(R.id.task4);
         task5 = findViewById(R.id.task5);
         task6 = findViewById(R.id.task6);
-        currentTask = findViewById(R.id.currentTask);
+        currentTask = findViewById(R.id.toHistory3);
+        taskThatAreComplete = findViewById(R.id.CompletedTaskAmount);
+        Button historyButton=findViewById(R.id.toHistory);
+        int completed_tasks = 0;
 
 
+        myReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("Something Happen", sh.getInt("currentWorkout", 1)+"");
+                Log.d("Something Happen", "Something did happen");
+                textSetting();
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.example.become.ACTION");
+        registerReceiver(myReceiver, intentFilter);
 
-        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+        sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         boolean hasUsedAppOnceBefore = sh.getBoolean("usedAppFirstTime", true);
         workoutPlan = sh.getInt("workoutPlan", 0);
         currentWorkout = sh.getInt("currentWorkout", 1);
         canCompleteTask = sh.getBoolean("canCompleteTask", true);
+        weeklyWorkout=sh.getInt("weeklyWorkout", 0);
         editor = sh.edit();
         if(hasUsedAppOnceBefore){
             editor.putBoolean("usedAppFirstTime", false);
@@ -56,22 +84,52 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if(canCompleteTask){
                         currentWorkout = currentWorkout+1;
+                        weeklyWorkout = weeklyWorkout+1;
                         canCompleteTask = false;
+                        editor.putInt("weeklyWorkout", weeklyWorkout);
                         editor.putInt("currentWorkout", currentWorkout);
                         editor.putBoolean("canCompleteTask", canCompleteTask);
                         editor.commit();
                         textSetting();
                     }
                     else{
-                        //Add Toast Message
+//                        //Add Toast Message
+//                        int duration = Toast.LENGTH_SHORT;
+//                        Toast toast = Toast.makeText(this,"hello",duration,);
+//                        toast.show();
+//
+//                        //Reset the buttons and finish it up for the day
+
+
                     }
+
+
                 }
             });
+
+
+
+
+
+            //temp possibly
+            historyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(MainActivity.this, history.class);
+                    startActivity(intent);
+                }
+            });
+
         }
+
     }
 
     public void textSetting(){
         String[] plan = null;
+        SharedPreferences sh1 = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        workoutPlan = sh1.getInt("workoutPlan", 1);
+        currentWorkout = sh1.getInt("currentWorkout", 1);
+        Log.d("Something happen", currentWorkout+"");
         switch (workoutPlan){
             case 1:
                 plan = WorkoutPlanManager.pushupPlan;
@@ -128,5 +186,14 @@ public class MainActivity extends AppCompatActivity {
         else{
             task6.setVisibility(View.INVISIBLE);
         }
+
+        taskThatAreComplete.setText((currentWorkout-1)+" Completed Tasks Today");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReceiver);
     }
 }

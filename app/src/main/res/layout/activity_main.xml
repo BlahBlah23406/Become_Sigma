@@ -4,117 +4,180 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scaleY="1.1"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="167dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="113dp"
-        android:layout_marginTop="31dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="1.1"
+        app:srcCompat="@drawable/mountains"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/toHistory3"
+        android:layout_width="294dp"
+        android:layout_height="406dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="480dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/raylingregular"
         android:gravity="center"
-        android:text="Welcome"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scaleX="2.4"
+        android:scaleY="0.8"
+        android:text="Do Task"
+        android:textScaleX="0.3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView" />
 
     <Button
         android:id="@+id/currentTask"
         android:layout_width="200dp"
         android:layout_height="46dp"
         android:layout_marginStart="96dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="656dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/raylingregular"
+        android:scaleX="3"
+        android:scaleY="8"
         android:text="Task"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        android:textSize="10sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleY="1.35"
+        app:srcCompat="@drawable/hkfjdshflshg_01"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="60dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="269dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="684dp"
+        android:fontFamily="@font/rayligsemibold"
         android:text="Current Task"
-        app:layout_constraintBottom_toTopOf="@+id/currentTask"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginBottom="600dp"
+        android:fontFamily="@font/rayligsemibold"
         android:text="Upcoming Task"
-        app:layout_constraintBottom_toTopOf="@+id/task1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/task1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/raylingregular"
+        android:gravity="center"
         android:text="Task"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/task2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/task2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginBottom="31dp"
-        android:text="Task"
-        app:layout_constraintBottom_toTopOf="@+id/task3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/task3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginBottom="30dp"
-        android:text="Task"
-        app:layout_constraintBottom_toTopOf="@+id/task4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/task4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginBottom="28dp"
-        android:text="Task"
-        app:layout_constraintBottom_toTopOf="@+id/task5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/task5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginBottom="27dp"
-        android:text="Task"
-        app:layout_constraintBottom_toTopOf="@+id/task6"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/task6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="181dp"
-        android:layout_marginBottom="81dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="280dp"
+        android:fontFamily="@font/raylingregular"
+        android:gravity="center"
         android:text="Task"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/task5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="118dp"
-        android:layout_marginBottom="281dp"
-        android:text="Completed Amout Today"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/raylingregular"
+        android:gravity="center"
+        android:text="Task"
+        app:layout_constraintBottom_toTopOf="@+id/task6"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/task3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/raylingregular"
+        android:text="Task"
+        app:layout_constraintBottom_toTopOf="@+id/task4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/task2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/raylingregular"
+        android:gravity="center"
+        android:text="Task"
+        app:layout_constraintBottom_toTopOf="@+id/task3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/task4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/raylingregular"
+        android:gravity="center"
+        android:text="Task"
+        app:layout_constraintBottom_toTopOf="@+id/task5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/CompletedTaskAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="230dp"
+        android:text="Task Completed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/toHistory"
+        android:layout_width="294dp"
+        android:layout_height="406dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="516dp"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/raylingregular"
+        android:gravity="center"
+        android:scaleX="2"
+        android:scaleY="0.8"
+        android:text="See History"
+        android:textScaleX="0.4"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
